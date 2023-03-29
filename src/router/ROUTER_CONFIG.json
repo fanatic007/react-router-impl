@@ -1,0 +1,48 @@
+{"routes":[
+  {
+    "name": "Login",
+    "locale": "user.login",
+    "path": "login",
+    "component": "./User/Login",
+    "hideInMenu": true
+  },
+  {
+    "path": "dashboard",
+    "locale": "dashboard",
+    "name": "Dashboard",
+    "icon": "dashboard",
+    "component": "pages/dashboard",
+    "index": true,
+    "routes": [
+      {
+        "path": "analysis",
+        "locale": "dashboard.analysis",
+        "component": "pages/dashboard/analysis",
+        "name": "analysis",
+        "accessTO": ["admin"]
+      },
+      {
+        "path": "monitor",
+        "locale": "dashboard.monitor",
+        "component": "pages/dashboard/monitor",
+        "name": "monitor"
+      },
+      {
+        "path": "workplace",
+        "locale": "dashboard.workplace",
+        "component": "pages/dashboard/workplace",
+        "name": "workplace"
+      }
+    ]
+  },
+  {
+    "path": "/projects",
+    "locale": "projects",
+    "name": "Projects",
+    "icon": "projects",
+    "redirect": "projects/list",
+    "component": "component"
+  },
+  { "path": "*", "component": "pages/404" }
+]
+}

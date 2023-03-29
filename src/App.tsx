@@ -1,25 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AppRouter from './components/app-router';
+import { INavRoute } from './model/INavRoute';
+import ROUTER_CONFIG from './router/ROUTER_CONFIG.json';
+const {routes} = ROUTER_CONFIG as {routes : INavRoute[]};
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Router</h1>
+      <AppRouter routesConfig={routes}></AppRouter>    
+    </>
   );
 }
 
