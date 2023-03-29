@@ -2,9 +2,12 @@ import React, { Suspense } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
-  RouteObject
+  RouteObject,
+  Link
 } from "react-router-dom";
 import { INavRoute } from "../model/INavRoute";
+import BreadcrumbsBar from "./breadcrumb-bar";
+import Layout from "./layout";
 
 
 const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
@@ -14,14 +17,17 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
       exact: true,
       path: route.path,
       element: <Suspense fallback={<>Loading</>}><Comp /></Suspense>,
-      children: route.routes ? routeConfigMap(route.routes) : []
+      children: route.routes ? routeConfigMap(route.routes) : [],
+      handle:{
+        crumb: {name: route.name,to:route.path}
+      }
     };
   }
 );
 const getBrowserRouter = (routes: RouteObject[]) => createBrowserRouter(routes);
 
 const AppRouter = ({routesConfig}:{routesConfig:INavRoute[]}) => {
-  const routes = routeConfigMap(routesConfig);
+  const routes = [{element: <Layout/>,children: routeConfigMap(routesConfig)}];
   const router = getBrowserRouter(routes);
   return <RouterProvider router={router} ></RouterProvider>;
 };
