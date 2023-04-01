@@ -5,12 +5,12 @@ type Match = {
   id: string;
   pathname: string;
   params: Params<string>;
-  data: any;
+  data: string;
   handle: {crumb:any, hideInMenu:boolean, icon:string, hideInBreadcrumbs:boolean};
 }
 
 function BreadcrumbsBar() {
-  let matches = useMatches() as Match[];console.log(matches);  
+  let matches = useMatches() as Match[];
   const {pathname} = useLocation();
   let crumbs = matches
     .filter((match: Match) => Boolean(match.handle?.crumb))
@@ -18,7 +18,7 @@ function BreadcrumbsBar() {
       <Link 
         className={match.pathname !== pathname ? '':'disabled-link'} 
         to={match.pathname} 
-        title={match.handle.icon}>{match.handle.crumb.name}
+        title={match.handle.icon}>{match.data ?? match.handle.crumb.name}
       </Link>
     );
   return (

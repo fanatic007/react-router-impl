@@ -49,7 +49,28 @@
         "icon": "projects",
         "component": "pages/projects/list", 
         "exact": true 
-      }     
+      },
+      {
+        "path": ":id",
+        "locale": "projects.details",
+        "name": "Project Details",
+        "component": "pages/projects/details", 
+        "hideInMenu": true,
+        "icon": "projects",
+        "key": "projects",
+        "exact": true,
+        "routes": [
+          {
+            "path": "settings", 
+            "locale": "projects.settings",
+            "component":"pages/projects/settings",
+            "icon": "settings",
+            "name": "Settings", 
+            "parentKey": "details", 
+            "exact": true
+          }
+        ]
+      }
     ]
   },
   { "path": "*", "component": "pages/404", "hideInMenu":true }

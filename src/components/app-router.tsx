@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { createBrowserRouter, RouteObject, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, LoaderFunctionArgs, Params, RouteObject, RouterProvider } from "react-router-dom";
 import { INavRoute } from "../model/INavRoute";
 import Layout from "./layout";
 import RedirectionPage from "./redirection-page";
@@ -19,6 +19,7 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
       exact: !route.redirect,
       path: route.path,
       element: element,
+      loader: route.path.includes(':')? ({params}:LoaderFunctionArgs)=> params.id   : undefined  ,
       children: route.routes ? routeConfigMap(route.routes) : [],
       handle:{
         crumb: (route.name && !route.redirect)? {name: route.name, to:route.path}: undefined,       
