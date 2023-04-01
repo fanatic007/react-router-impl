@@ -22,7 +22,7 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
       loader: route.path.includes(':')? ({params}:LoaderFunctionArgs)=> params.id   : undefined  ,
       children: route.routes ? routeConfigMap(route.routes) : [],
       handle:{
-        crumb: (route.name && !route.redirect)? {name: route.name, to:route.path}: undefined,       
+        crumb: route.name? {name: route.name, to:route.path}: undefined,       
         icon: route.icon
       }
     };
@@ -31,7 +31,7 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
 const getBrowserRouter = (routes: RouteObject[]) => createBrowserRouter(routes);
 
 const AppRouter = ({routesConfig}:{routesConfig:INavRoute[]}) => {
-  const routes = [{element: <Layout/>,children: routeConfigMap(routesConfig)}];
+  const routes = [{element: <Layout routes={routesConfig}/>,children: routeConfigMap(routesConfig)}];
   const router = getBrowserRouter(routes);
   return <RouterProvider router={router} ></RouterProvider>;
 };
