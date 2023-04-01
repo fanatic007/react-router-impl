@@ -1,9 +1,9 @@
 {"routes":[
   {
+    "path": "login",
     "name": "Login",
     "locale": "user.login",
-    "path": "login",
-    "component": "./User/Login",
+    "component": "pages/login",
     "hideInMenu": true
   },
   {
@@ -18,31 +18,40 @@
         "path": "analysis",
         "locale": "dashboard.analysis",
         "component": "pages/dashboard/analysis",
-        "name": "analysis",
+        "name": "Analysis",
         "accessTO": ["admin"]
       },
       {
         "path": "monitor",
         "locale": "dashboard.monitor",
         "component": "pages/dashboard/monitor",
-        "name": "monitor"
+        "name": "Monitor"
       },
       {
         "path": "workplace",
         "locale": "dashboard.workplace",
         "component": "pages/dashboard/workplace",
-        "name": "workplace"
+        "name": "Workplace"
       }
     ]
   },
   {
-    "path": "/projects",
+    "path": "projects",
     "locale": "projects",
     "name": "Projects",
     "icon": "projects",
-    "redirect": "projects/list",
-    "component": "component"
+    "redirect": "list",
+    "routes": [
+      { 
+        "path": "list",
+        "locale": "projects.list", 
+        "name": "Projects", 
+        "icon": "projects",
+        "component": "pages/projects/list", 
+        "exact": true 
+      }     
+    ]
   },
-  { "path": "*", "component": "pages/404" }
+  { "path": "*", "component": "pages/404", "hideInMenu":true }
 ]
 }

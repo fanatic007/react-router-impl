@@ -5,7 +5,7 @@ import ROUTER_CONFIG from './router/ROUTER_CONFIG.json';
 const {routes} = ROUTER_CONFIG as {routes : INavRoute[]};
 
 const App = () => {
-  return (
+    return (
     <>
       <h1>Router</h1>
       <AppRouter routesConfig={routes}></AppRouter>    

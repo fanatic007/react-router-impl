@@ -1,25 +1,28 @@
 import React, { Suspense } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  RouteObject,
-  Link
-} from "react-router-dom";
+import { createBrowserRouter, RouteObject, RouterProvider } from "react-router-dom";
 import { INavRoute } from "../model/INavRoute";
-import BreadcrumbsBar from "./breadcrumb-bar";
 import Layout from "./layout";
+import RedirectionPage from "./redirection-page";
 
 
 const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
   routes.map((route) => {
-    const Comp = React.lazy(() => import(`../${route.component}`));
+    let element;
+    if(route.component){
+      const Comp = React.lazy(() => import(`../${route.component}`));
+      element = <Suspense fallback={<>Loading</>}><Comp/></Suspense>;
+    }
+    else if(route.redirect){
+      element = <RedirectionPage path={route.redirect} />;
+    }
     return {
-      exact: true,
+      exact: !route.redirect,
       path: route.path,
-      element: <Suspense fallback={<>Loading</>}><Comp /></Suspense>,
+      element: element,
       children: route.routes ? routeConfigMap(route.routes) : [],
       handle:{
-        crumb: {name: route.name,to:route.path}
+        crumb: (route.name && !route.redirect)? {name: route.name, to:route.path}: undefined,       
+        icon: route.icon
       }
     };
   }

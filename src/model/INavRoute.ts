@@ -16,6 +16,7 @@ export interface INavRoute {
   parentKey?: string;
   redirect?: string;
   index?: boolean;
+  hideInBreadCrumbs?: boolean;
 }
 
 export interface Param {
