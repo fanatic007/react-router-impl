@@ -7,7 +7,7 @@
     "hideInMenu": true
   },
   {
-    "path": "dashboard",
+    "path": "/dashboard",
     "locale": "dashboard",
     "name": "Dashboard",
     "icon": "dashboard",
@@ -15,20 +15,20 @@
     "index": true,
     "routes": [
       {
-        "path": "analysis",
+        "path": "/dashboard/analysis",
         "locale": "dashboard.analysis",
         "component": "pages/dashboard/analysis",
         "name": "Analysis",
         "accessTO": ["admin"]
       },
       {
-        "path": "monitor",
+        "path": "/dashboard/monitor",
         "locale": "dashboard.monitor",
         "component": "pages/dashboard/monitor",
         "name": "Monitor"
       },
       {
-        "path": "workplace",
+        "path": "/dashboard/workplace",
         "locale": "dashboard.workplace",
         "component": "pages/dashboard/workplace",
         "name": "Workplace"
@@ -36,22 +36,23 @@
     ]
   },
   {
-    "path": "projects",
+    "path": "/projects",
     "locale": "projects",
     "name": "Projects",
     "icon": "projects",
     "redirect": "list",
     "routes": [
       { 
-        "path": "list",
+        "path": "/projects/list",
         "locale": "projects.list", 
-        "name": "Projects", 
+        "name": "All", 
         "icon": "projects",
         "component": "pages/projects/list", 
-        "exact": true 
+        "exact": true ,
+        "hideInMenu": true
       },
       {
-        "path": ":id",
+        "path": "/projects/:id",
         "locale": "projects.details",
         "name": "Project Details",
         "component": "pages/projects/details", 
@@ -61,7 +62,7 @@
         "exact": true,
         "routes": [
           {
-            "path": "settings", 
+            "path": "/projects/:id/settings", 
             "locale": "projects.settings",
             "component":"pages/projects/settings",
             "icon": "settings",
