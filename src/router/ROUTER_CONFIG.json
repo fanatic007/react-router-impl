@@ -19,19 +19,22 @@
         "locale": "dashboard.analysis",
         "component": "pages/dashboard/analysis",
         "name": "Analysis",
+        "icon":"analysis",
         "accessTO": ["admin"]
       },
       {
         "path": "/dashboard/monitor",
         "locale": "dashboard.monitor",
         "component": "pages/dashboard/monitor",
-        "name": "Monitor"
+        "name": "Monitor",
+        "icon": "Monitor"
       },
       {
         "path": "/dashboard/workplace",
         "locale": "dashboard.workplace",
         "component": "pages/dashboard/workplace",
-        "name": "Workplace"
+        "name": "Workplace",
+        "icon": "Workplace"
       }
     ]
   },
@@ -46,7 +49,7 @@
         "path": "/projects/list",
         "locale": "projects.list", 
         "name": "All", 
-        "icon": "projects",
+        "icon": "list",
         "component": "pages/projects/list", 
         "exact": true ,
         "hideInMenu": true
@@ -57,7 +60,7 @@
         "name": "Project Details",
         "component": "pages/projects/details", 
         "hideInMenu": true,
-        "icon": "projects",
+        "icon": "number",
         "key": "projects",
         "exact": true,
         "routes": [
