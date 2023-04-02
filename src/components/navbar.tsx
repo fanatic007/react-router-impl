@@ -1,7 +1,8 @@
 import { List } from "@mui/material";
-import { Children } from "react";
+import { Children, useContext } from "react";
 import { INavRoute } from "../model/INavRoute";
 import NestedListItem from "./nested-list-item";
+import { RoutesContext } from "../App";
 
 const getNavItems = (routes: INavRoute[] | undefined)=>{
   if(routes){
@@ -11,8 +12,9 @@ const getNavItems = (routes: INavRoute[] | undefined)=>{
   return routes;  
 }
 
-const Navbar = ({routes}:{routes:INavRoute[]}) => {
-  const navRoutes = getNavItems(routes as INavRoute[]); 
+const Navbar = () => {
+  const {routes} = useContext(RoutesContext);
+  const navRoutes = getNavItems(routes); 
   return (
     <List
       sx={{ maxWidth: 360, bgcolor: 'background.paper' }}

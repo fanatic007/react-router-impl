@@ -1,8 +1,9 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useContext } from "react";
 import { createBrowserRouter, LoaderFunctionArgs, Params, RouteObject, RouterProvider } from "react-router-dom";
 import { INavRoute } from "../model/INavRoute";
 import Layout from "./layout";
 import RedirectionPage from "./redirection-page";
+import { RoutesContext } from "../App";
 
 
 const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
@@ -30,8 +31,9 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
 );
 const getBrowserRouter = (routes: RouteObject[]) => createBrowserRouter(routes);
 
-const AppRouter = ({routesConfig}:{routesConfig:INavRoute[]}) => {
-  const routes = [{element: <Layout routes={routesConfig}/>,children: routeConfigMap(routesConfig)}];
+const AppRouter = () => {
+  const {routes:routesConfig} = useContext(RoutesContext);
+  const routes = [{element: <Layout />,children: routeConfigMap(routesConfig)}];
   const router = getBrowserRouter(routes);
   return <RouterProvider router={router} ></RouterProvider>;
 };

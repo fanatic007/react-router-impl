@@ -4,7 +4,7 @@ import BreadcrumbsBar from "./breadcrumb-bar";
 import Navbar from "./navbar";
 import { Box, Container, Grid, Typography } from "@mui/material";
 
-const Layout = ({routes}: { routes:INavRoute[]}) =>{
+const Layout = () =>{
   return(
     <Container>
       <Grid container spacing={2}>
@@ -15,7 +15,7 @@ const Layout = ({routes}: { routes:INavRoute[]}) =>{
         </Grid>
         <Grid item xs={3}>
           <nav>
-            <Navbar routes={routes}/>
+            <Navbar/>
           </nav>
         </Grid>
         <Grid item xs={9}>
