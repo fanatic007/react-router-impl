@@ -8,9 +8,10 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import TagIcon from '@mui/icons-material/Tag';
 import LayersIcon from '@mui/icons-material/Layers';
-import { Icon } from "@mui/material";
+import { Color, Icon } from "@mui/material";
+import { Theme } from "@mui/material";
 
-const CustomIcon = ({iconName}:{iconName:string | undefined})=>{
+const CustomIcon = ({iconName,color}:{iconName:string | undefined, color?: 'primary' | 'secondary' })=>{
   const renderSwitch = (iconName:string | undefined) => {
     switch(iconName?.toLowerCase()) {
       case 'settings':
@@ -35,7 +36,7 @@ const CustomIcon = ({iconName}:{iconName:string | undefined})=>{
     }
   }
   return(
-    <Icon sx={{mr:1}}>
+    <Icon color={color} sx={{mr:1, verticalAlign:'sub'}}>
       {renderSwitch(iconName)}
     </Icon>
   )

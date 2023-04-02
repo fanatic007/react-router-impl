@@ -1,4 +1,4 @@
-import { List } from "@mui/material";
+import { Box, List } from "@mui/material";
 import { Children, useContext } from "react";
 import { INavRoute } from "../model/INavRoute";
 import NestedListItem from "./nested-list-item";
@@ -16,16 +16,16 @@ const Navbar = () => {
   const {routes} = useContext(RoutesContext);
   const navRoutes = getNavItems(routes); 
   return (
-    <List
-      sx={{ maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      
-    >
-    {
-      Children.toArray(navRoutes?.map(route => <NestedListItem route={route}/>))
-    }
-    </List>
+    <Box sx={{ pt:6.5, pb:1, px:1, bgcolor:'grey.200',}}>
+      <List
+        sx={{ minHeight:600, maxWidth: 280, bgcolor: 'transparent' }}
+        component="nav"      
+      >
+      {
+        Children.toArray(navRoutes?.map(route => <NestedListItem route={route}/>))
+      }
+      </List>
+    </Box>
   );
 }
 

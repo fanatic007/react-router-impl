@@ -1,12 +1,12 @@
+import { Link, List, ListItem } from "@mui/material";
 import { Children } from "react";
-import { Link } from "react-router-dom";
 
 const ProjectsList = () => {
   const projects = [{id:'123'},{id:'2146'},{id:'42'}]
   return(
-    <>
-      { Children.toArray(projects.map(({id})=><div><Link to={`../${id}`} replace={true}>{id}</Link></div>)) }
-    </>
+    <List>
+      { Children.toArray(projects.map(({id},i)=><ListItem><Link underline="hover" href={`${id}`}>{`${i+1}. Project ${id}`}</Link></ListItem>)) }
+    </List>
   )
 }
 
