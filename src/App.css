@@ -32,6 +32,10 @@ a {
   color: #61dafb;
 }
 
+.active-link {
+  color:#1976d2 !important;
+}
+
 .disabled-link {
   color: black;
   pointer-events: none;
