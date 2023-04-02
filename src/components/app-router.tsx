@@ -33,7 +33,7 @@ const getBrowserRouter = (routes: RouteObject[]) => createBrowserRouter(routes);
 
 const AppRouter = () => {
   const {routes:routesConfig} = useContext(RoutesContext);
-  const routes = [{element: <Layout />,children: routeConfigMap(routesConfig)}];
+  const routes = [{element: <Layout defaultRoute="/dashboard"/>,children: routeConfigMap(routesConfig)}];
   const router = getBrowserRouter(routes);
   return <RouterProvider router={router} ></RouterProvider>;
 };
