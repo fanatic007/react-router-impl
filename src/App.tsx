@@ -7,7 +7,6 @@ const {routes} = ROUTER_CONFIG as {routes : INavRoute[]};
 const App = () => {
     return (
     <>
-      <h1>Router</h1>
       <AppRouter routesConfig={routes}></AppRouter>    
     </>
   );
