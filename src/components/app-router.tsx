@@ -20,11 +20,11 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
       exact: !route.redirect,
       path: route.path,
       element: element,
-      loader: route.path.includes(':')? ({params}:LoaderFunctionArgs)=> params.id   : undefined  ,
+      loader: route.isDynamic? ({params}:LoaderFunctionArgs)=> params.id   : undefined  ,
       children: route.routes ? routeConfigMap(route.routes) : [],
       handle:{
-        crumb: route.name? {name: route.name, to:route.path}: undefined,       
-        icon: route.icon
+        crumb: route.name? {name: route.name, to:route.path, isDynamic: route.isDynamic}: undefined,       
+        icon: route.icon        
       }
     };
   }

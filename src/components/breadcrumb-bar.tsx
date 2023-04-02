@@ -9,10 +9,10 @@ type Match = {
   pathname: string;
   params: Params<string>;
   data: string;
-  handle: {crumb:any, hideInMenu:boolean, icon:string, hideInBreadcrumbs:boolean};
+  handle: {crumb:any, hideInMenu:boolean, icon:string, isDynamic:boolean, showData:boolean};
 }
 
-function BreadcrumbsBar() {
+const BreadcrumbsBar = ()=> {
   let matches = useMatches() as Match[];
   const {pathname} = useLocation();
   let crumbs = matches
@@ -25,16 +25,18 @@ function BreadcrumbsBar() {
         title={match.handle.icon}>            
           <Typography fontSize={'large'}>
             <CustomIcon iconName={match.handle.icon} />
-            {match.data ?? match.handle.crumb.name}
+            { match.handle.crumb.isDynamic ? match.data : match.handle.crumb.name}
           </Typography>            
       </Link>
     );
   return (
-    <Breadcrumbs aria-label="breadcrumb" separator="›">
-      {
-        Children.toArray(crumbs)
-      }
-    </Breadcrumbs>  
+    <Box sx={{ py:2,px:1}}>
+      <Breadcrumbs aria-label="breadcrumb" separator="›">
+        {
+          Children.toArray(crumbs)
+        }
+      </Breadcrumbs>  
+    </Box>
   );
 }
 

@@ -63,6 +63,7 @@
         "icon": "number",
         "key": "projects",
         "exact": true,
+        "isDynamic":true,
         "routes": [
           {
             "path": "/projects/:id/settings", 
