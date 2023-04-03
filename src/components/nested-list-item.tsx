@@ -1,15 +1,15 @@
-import { Collapse, Divider, Icon, ListItem, ListItemButton, ListItemIcon, ListItemText, Theme, createStyles, makeStyles } from "@mui/material";
+import { Collapse, Divider, ListItemButton, ListItemText } from "@mui/material";
 import { PropsWithChildren, forwardRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { INavRoute } from "../model/INavRoute";
 
-import { ExpandMore, ExpandLess } from "@mui/icons-material";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Children } from "react";
+import { useTranslation } from "react-i18next";
 import CustomIcon from "./custom-icon";
 
 const NavLinkComponent = forwardRef<any, any>(({children,to,className, activeClassName}:PropsWithChildren&{to:string, className:string, activeClassName:string},ref) =>(
-    <NavLink 
+    <NavLink
       to={to} 
       ref={ref}
       className={({ isActive }) => `${className} ${isActive ? activeClassName : ''}`}    
@@ -21,6 +21,7 @@ const NavLinkComponent = forwardRef<any, any>(({children,to,className, activeCla
 
 const NestedListItem = ({route}:{route:INavRoute}) => {
   const [open, setOpen] = useState(true);
+  const { t, i18n} = useTranslation('translation');
 
   return(
     <>      
@@ -31,7 +32,7 @@ const NestedListItem = ({route}:{route:INavRoute}) => {
           }}
           onClick={()=>setOpen(open=>!open)} component={NavLinkComponent} to={route.path} activeClassName={'active-link'} >
           <CustomIcon color="primary" iconName={route.icon}></CustomIcon>
-          <ListItemText primary={route.name} />
+          <ListItemText primary={t(route?.locale?.replace(/\./g,':') as string)} />
           {
             route.routes && 
             <>{open ? <ExpandLess /> : <ExpandMore />}</>

@@ -8,11 +8,10 @@
   },
   {
     "path": "/dashboard",
-    "locale": "dashboard",
+    "locale": "dashboard.dashboard",
     "name": "Dashboard",
     "icon": "dashboard",
     "component": "pages/dashboard",
-    "index": true,
     "routes": [
       {
         "path": "/dashboard/analysis",
@@ -40,7 +39,7 @@
   },
   {
     "path": "/projects",
-    "locale": "projects",
+    "locale": "projects.projects",
     "name": "Projects",
     "icon": "projects",
     "redirect": "list",

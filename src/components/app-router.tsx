@@ -1,10 +1,9 @@
-import React, { Suspense, useContext } from "react";
-import { createBrowserRouter, LoaderFunctionArgs, Params, RouteObject, RouterProvider } from "react-router-dom";
+import React, { Suspense, useContext, useMemo } from "react";
+import { LoaderFunctionArgs, RouteObject, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RoutesContext } from "../App";
 import { INavRoute } from "../model/INavRoute";
 import Layout from "./layout";
 import RedirectionPage from "./redirection-page";
-import { RoutesContext } from "../App";
-
 
 const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
   routes.map((route) => {
@@ -23,8 +22,13 @@ const routeConfigMap = (routes: INavRoute[]): RouteObject[] =>
       loader: route.isDynamic? ({params}:LoaderFunctionArgs)=> params.id   : undefined  ,
       children: route.routes ? routeConfigMap(route.routes) : [],
       handle:{
-        crumb: route.name? {name: route.name, to:route.path, isDynamic: route.isDynamic}: undefined,       
-        icon: route.icon        
+        crumb: route.name? {
+            name: route.name,
+            to:route.path, 
+            isDynamic: route.isDynamic,
+          }: undefined,       
+        icon: route.icon,
+        locale: route.locale  
       }
     };
   }
@@ -33,8 +37,8 @@ const getBrowserRouter = (routes: RouteObject[]) => createBrowserRouter(routes);
 
 const AppRouter = () => {
   const {routes:routesConfig} = useContext(RoutesContext);
-  const routes = [{element: <Layout defaultRoute="/dashboard"/>,children: routeConfigMap(routesConfig)}];
+  const routes = useMemo(()=>[{element: <Layout defaultRoute="/dashboard"/>,children: routeConfigMap(routesConfig)}],[routesConfig]);
   const router = getBrowserRouter(routes);
-  return <RouterProvider router={router} ></RouterProvider>;
+  return <RouterProvider router={router} ></RouterProvider>;  
 };
 export default AppRouter;
