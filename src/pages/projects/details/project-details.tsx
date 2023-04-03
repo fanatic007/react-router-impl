@@ -1,10 +1,14 @@
-import { Link } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Typography } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
 
 const ProjecDetails = ()=> {
   let { id } = useParams();
   return (
-    <Link href={`${id}/settings`}>Settings</Link>
+    <Link to={`settings`}>
+      <Typography variant="body1" color={'primary'}>
+        Settings
+      </Typography>
+    </Link>
   );
 };
 

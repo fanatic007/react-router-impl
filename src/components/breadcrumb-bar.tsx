@@ -1,6 +1,6 @@
-import { Box, Breadcrumbs, Link, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { Children } from "react";
-import { Params, useLocation, useMatches } from "react-router-dom";
+import { Link, Params, useLocation, useMatches } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import CustomIcon from "./custom-icon";
 
@@ -19,12 +19,11 @@ const BreadcrumbsBar = ()=> {
     .filter((match: Match) => Boolean(match.handle?.crumb))
     .map((match:Match) => 
       <Link 
-        underline="hover"
         className={match.pathname !== pathname ? '':'disabled-link'} 
-        href={match.pathname} 
+        to={match.pathname} 
         title={match.handle.icon}>            
-          <Typography fontSize={'large'}>
-            <CustomIcon iconName={match.handle.icon} />
+          <Typography fontSize={'large'} color={'primary'}>
+            <CustomIcon iconName={match.handle.icon} color="primary"/>
             { match.handle.crumb.isDynamic ? match.data : match.handle.crumb.name}
           </Typography>            
       </Link>
