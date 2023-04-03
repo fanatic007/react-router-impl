@@ -1,4 +1,4 @@
-import { Collapse, Divider, ListItemButton, ListItemText } from "@mui/material";
+import { Box, Collapse, Divider, ListItemButton, ListItemText } from "@mui/material";
 import { PropsWithChildren, forwardRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { INavRoute } from "../model/INavRoute";
@@ -30,13 +30,15 @@ const NestedListItem = ({route}:{route:INavRoute}) => {
           sx={{
             color: 'primary',
           }}
-          onClick={()=>setOpen(open=>!open)} component={NavLinkComponent} to={route.path} activeClassName={'active-link'} >
-          <CustomIcon color="primary" iconName={route.icon}></CustomIcon>
-          <ListItemText primary={t(route?.locale?.replace(/\./g,':') as string)} />
-          {
-            route.routes && 
-            <>{open ? <ExpandLess /> : <ExpandMore />}</>
-          }
+           component={NavLinkComponent} to={route.path} activeClassName={'active-link'} >
+          <Box sx={{display:'flex',width:'100%'}}  onClick={()=>setOpen(open=>!open)}>
+            <CustomIcon color="primary" iconName={route.icon}></CustomIcon>
+            <ListItemText sx={{flex:'1 0 auto'}} primary={t(route?.locale?.replace(/\./g,':') as string)} />
+            {
+              route.routes && 
+              <>{open ? <ExpandLess /> : <ExpandMore />}</>
+            }            
+          </Box>
       </ListItemButton>
       <Divider />
       {

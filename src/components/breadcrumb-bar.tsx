@@ -24,7 +24,7 @@ const BreadcrumbsBar = ()=> {
         className={match.pathname !== pathname ? '':'disabled-link'} 
         to={match.pathname} 
         title={match.handle.icon}>            
-          <Typography fontSize={'large'} color={'primary'}>
+          <Typography sx={{textDecorationLine:"none !important"}} fontSize={'large'} color={'primary'}>
             <CustomIcon iconName={match.handle.icon} color="primary"/>
             { match.handle.crumb.isDynamic ? match.data : t((match?.handle?.locale as string)?.replace(/\./g,':'))}
           </Typography>            
@@ -32,7 +32,7 @@ const BreadcrumbsBar = ()=> {
     );
   return (
     <Box sx={{ py:2,px:1}}>
-      <Breadcrumbs aria-label="breadcrumb" separator="›">
+      <Breadcrumbs sx={{ alignItems:'baseline'}} aria-label="breadcrumb" separator="›">
         {
           Children.toArray(crumbs)
         }

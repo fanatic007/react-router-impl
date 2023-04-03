@@ -31,6 +31,19 @@ a {
 .App-link {
   color: #61dafb;
 }
+a{
+  text-decoration-line: unset !important;
+}
+
+a:hover, a:active{
+  text-decoration-line: underline !important;
+  text-decoration-color: #1976d2;
+}
+
+a{
+  text-decoration: unset !important;
+  display: block;
+}
 
 .active-link {
   color:#1976d2 !important;
